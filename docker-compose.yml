@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  api:
+    image: node:20-alpine
+    container_name: org_usr_api
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: sh -c "npm install && npm run dev"
+    ports:
+      - "3000:3001"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: postgres:15-alpine
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: org_&_user_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres4567
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
