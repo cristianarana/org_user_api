@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   api:
-    image: node:20-alpine
+    image: node:24-alpine
     container_name: org_usr_api
     working_dir: /app
     volumes:
