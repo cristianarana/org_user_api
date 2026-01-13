@@ -1,10 +1,20 @@
 import 'reflect-metadata';
-import Fastify from 'fastify';
+import { buildApp } from './app';
+import { env } from './config/env';
 
-const app = Fastify({ logger: true });
+const PORT = Number(env.PORT);
+const HOST =  '0.0.0.0';
 
-app.get('/health', async () => {
-  return { status: 'ok' };
-});
+async function startServer() {
+  try {
+    const app = buildApp();
 
-app.listen({ port: 3000, host: '0.0.0.0' });
+    await app.listen({ port: PORT, host: HOST });
+    console.log(`Server is running at http://${HOST}:${PORT}`);
+  }catch (err) {
+    console.error('Error starting server:', err);
+    process.exit(1);
+  }
+}
+
+startServer();
