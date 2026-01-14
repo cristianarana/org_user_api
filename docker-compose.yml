@@ -20,11 +20,11 @@ services:
     image: postgres:15-alpine
     container_name: postgres-db
     environment:
-      POSTGRES_DB: org_&_user_db
+      POSTGRES_DB: org_user_db
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres4567
+      POSTGRES_PASSWORD: postgres1234
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
