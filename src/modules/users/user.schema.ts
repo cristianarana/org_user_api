@@ -1,7 +1,6 @@
 import { Static, Type } from '@sinclair/typebox';
 
 export const UserBaseSchema = {
-  id: Type.String({ format: 'uuid' }),
   name: Type.String({ minLength: 2, maxLength: 100 }),
   email: Type.String({ format: 'email' }),
   createdAt: Type.String({ format: 'date-time' }),
