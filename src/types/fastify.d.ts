@@ -1,5 +1,5 @@
 import 'fastify';
-import { DataSource } from 'typeorm';
+import { DataSource, Repository  } from 'typeorm';
 
 declare module 'fastify' {
   interface FastifyInstance {
