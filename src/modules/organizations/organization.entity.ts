@@ -1,5 +1,6 @@
 import { CONNREFUSED } from 'node:dns';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { UserEntity } from '../users/user.entity';
 
 
 @Entity('organizations')
@@ -24,4 +25,7 @@ export class OrganizationEntity {
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
     public updatedAt!: Date;
+
+    @OneToMany(() => UserEntity, user => user.organization)
+    users: UserEntity[];
 }
